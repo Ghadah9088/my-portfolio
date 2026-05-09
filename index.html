@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ghadah Al-soubaie — Cloud & DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<style>
+:root {
+  --bg-base: #0a0c12;
+  --bg-surface: #111420;
+  --bg-card: #161b2a;
+  --border: rgba(255, 255, 255, 0.08);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --blue: #3b82f6;
+  --blue-glow: rgba(59, 130, 246, 0.5);
+  --purple: #8b5cf6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* CLEAN GRID BACKGROUND */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(rgba(59, 130, 246, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: -1;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.5rem 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; }
+.nav-links { display: flex; gap: 2rem; list-style: none; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+.nav-links a { text-decoration: none; color: var(--text-secondary); transition: 0.3s; }
+.nav-links a:hover { color: var(--blue); }
+
+section { padding: 120px 6rem; max-width: 1200px; margin: 0 auto; }
+
+/* HERO SECTION */
+.hero { min-height: 80vh; display: flex; align-items: center; text-align: center; justify-content: center; }
+.hero-content { max-width: 800px; }
+.hero-tag { font-family: 'JetBrains Mono', monospace; color: var(--blue); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1rem; }
+.hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; margin-bottom: 1.5rem; }
+.hero h1 span { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2.5rem; }
+
+.btn-group { display: flex; gap: 1rem; justify-content: center; }
+.btn { padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+.btn-primary { background: var(--blue); color: white; box-shadow: 0 4px 20px var(--blue-glow); }
+.btn-secondary { border: 1px solid var(--border); color: var(--text-primary); }
+.btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+/* ABOUT BOX */
+.about-box { background: var(--bg-surface); padding: 3rem; border-radius: 20px; border: 1px solid var(--border); text-align: left; }
+.about-box h2 { font-family: 'Syne', sans-serif; font-size: 2rem; margin-bottom: 1rem; }
+.about-box p { color: var(--text-secondary); font-size: 1.1rem; }
+
+/* CARDS */
+.section-title { font-family: 'Syne', sans-serif; font-size: 2.5rem; margin-bottom: 3rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.card { background: var(--bg-card); border: 1px solid var(--border); padding: 2.5rem; border-radius: 16px; transition: 0.3s; position: relative; }
+.card:hover { border-color: var(--blue); transform: translateY(-5px); }
+
+/* ICONS */
+.card-icon { font-size: 2rem; color: var(--blue); margin-bottom: 1.5rem; display: block; }
+.card h3 { font-family: 'Syne', sans-serif; margin-bottom: 1rem; font-size: 1.3rem; }
+.card p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+
+.badge { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; padding: 4px 10px; border-radius: 4px; background: rgba(59, 130, 246, 0.1); color: var(--blue); margin-right: 5px; }
+
+/* CONTACT */
+.contact-container { background: var(--bg-surface); padding: 4rem; border-radius: 24px; text-align: center; border: 1px solid var(--border); }
+.contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+.contact-links a { color: var(--text-primary); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+.contact-links a:hover { color: var(--blue); }
+
+@media (max-width: 768px) {
+  nav, section { padding: 1.5rem; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Ghadah.cloud</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero" class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Cloud & DevOps Engineer · Riyadh</div>
+    <h1>Building <span>Scalable</span> Infrastructure</h1>
+    <p>Designing secure, production-grade solutions across GCP & AWS. Transitioning data insights into automated cloud architectures.</p>
+    <div class="btn-group">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-box">
+    <div class="hero-tag" style="margin-bottom: 0.5rem;">// The Background</div>
+    <h2>About Me</h2>
+    <p>
+      Computer Science graduate and former Data Analyst with a focus on Cloud Infrastructure and DevOps. 
+      I specialize in architecting secure environments, automating workflows with Terraform, 
+      and managing multi-cloud ecosystems (AWS & GCP). My approach combines data-driven insights with robust technical engineering to build resilient systems.
+    </p>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">Selected Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <i class="fa-solid fa-shield-halved card-icon"></i>
+      <span class="badge">Multi-Cloud</span>
+      <h3>AWS/GCP Site-to-Site VPN</h3>
+      <p>Secure, encrypted cross-cloud tunnel enabling private communication between AWS and GCP environments with zero public IP exposure.</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-code card-icon"></i>
+      <span class="badge">Terraform</span>
+      <h3>Infrastructure Automation</h3>
+      <p>Full GCP provisioning using Terraform, implementing Managed Instance Groups and auto-scaling policies for high availability.</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-network-wired card-icon"></i>
+      <span class="badge">Networking</span>
+      <h3>Private VPC Architecture</h3>
+      <p>Engineered secure routing via Cloud NAT and internal load balancing on GCP for backend-only workloads.</p>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <h2 class="section-title">Certifications</h2>
+  <div class="grid">
+    <div class="card" style="text-align: center;">
+      <i class="fa-brands fa-google card-icon" style="margin: 0 auto 1.5rem auto;"></i>
+      <h3>Associate Cloud Engineer</h3>
+      <p>Google Cloud Platform (ACE)</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <i class="fa-solid fa-cloud card-icon" style="margin: 0 auto 1.5rem auto;"></i>
+      <h3>OCI AI Foundation</h3>
+      <p>Oracle Cloud Associate</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <i class="fa-solid fa-award card-icon" style="margin: 0 auto 1.5rem auto;"></i>
+      <h3>Multi-Cloud Engineering</h3>
+      <p>Tuwaiq Academy Graduate</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-container">
+    <h2 class="section-title" style="margin-bottom: 1rem;">Let's Connect</h2>
+    <p>Currently available for new opportunities in Cloud Architecture and DevOps.</p>
+    <div class="contact-links">
+      <a href="mailto:ghadtal216@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+      <a href="https://linkedin.com/in/ghadah-alsoubaie-51775031b" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="tel:+966503327563"><i class="fa-solid fa-phone"></i> Call</a>
+    </div>
+  </div>
+</section>
+
+<footer style="padding: 4rem; text-align: center; color: var(--text-secondary); font-size: 0.8rem; font-family: 'JetBrains Mono';">
+  © 2026 Ghadah Al-soubaie · Riyadh, Saudi Arabia
+</footer>
+
+</body>
+</html>
